@@ -6,25 +6,28 @@ const MAXDATALENGTH = 30;
 let data = [];
 genChartData();
 
+let tempData = {
+  chartData: [],
+  chartLabel: [],
+  original: data.slice(-10)
+}
+function getData(type) {
+  return data.map(d => {
+    return d[type]
+  }).slice(-10)
+}
+tempData.chartData = [[getData('n'), getData('p'), getData('k')],
+[getData('soilTemp'), getData('soilMoisture'), getData('ec'), getData('ph')],
+[getData('co2'), getData('so2'), getData('no2'), getData('temp'), getData('humi')]]
+tempData.chartLabel = data.map(d => d.timeStamp).slice(-10)
+
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.sendFile("views/index.html", { root: 'public' });
 });
 
 router.get('/getChartData', (req, res) => {
-  let tempData = {
-    chartData: [],
-    chartLabel: []
-  }
-  function getData(type) {
-    return data.map(d => {
-      return d[type]
-    }).slice(-10)
-  }
-  tempData.chartData = [[getData('n'), getData('p'), getData('k')],
-  [getData('soilTemp'), getData('soilMoisture'), getData('EC'), getData('ph')],
-  [getData('co2'), getData('so2'), getData('no2'), getData('temp'), getData('humi')]]
-  tempData.chartLabel = data.map(d => d.timeStamp).slice(-10)
   res.json(tempData);
 })
 
@@ -36,7 +39,7 @@ function genChartData() {
       k: randomFloat(10, 20),
       soilTemp: randomFloat(10, 20),
       soilMoisture: randomFloat(10, 20),
-      EC: randomFloat(10, 20),
+      ec: randomFloat(10, 20),
       ph: randomFloat(10, 20),
       co2: randomFloat(10, 20),
       so2: randomFloat(10, 20),

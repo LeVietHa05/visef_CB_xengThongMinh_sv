@@ -155,10 +155,10 @@
                 </span>
               </div>
             </div>
-            <div class="fs-30 pb-12" id="s_temp"></div>
+            <div class="fs-30 pb-12" id="soilTemp"></div>
             <div class="flex-container">
               <div class="con-title3">
-                <div class="con-title1 fs-15 pr-12" id="s_temp-increase">
+                <div class="con-title1 fs-15 pr-12" id="soilTemp-increase">
                   <span class="material-symbols-outlined">
                     arrow_upward
                   </span>
@@ -179,10 +179,10 @@
                 </span>
               </div>
             </div>
-            <div class="fs-30 pb-12" id="s_humi"></div>
+            <div class="fs-30 pb-12" id="soilMoisture"></div>
             <div class="flex-container">
               <div class="con-title3">
-                <div class="con-title1 fs-15 pr-12" id="s_humi-increase" style="color: red;">
+                <div class="con-title1 fs-15 pr-12" id="soilMoisture-increase" style="color: red;">
                   <span class="material-symbols-outlined">
                     arrow_downward
                   </span>
@@ -331,10 +331,10 @@
                 </span>
               </div>
             </div>
-            <div class="fs-30 pb-12" id="a_temp"></div>
+            <div class="fs-30 pb-12" id="temp"></div>
             <div class="flex-container">
               <div class="con-title3">
-                <div class="con-title1 fs-15 pr-12" id="a_temp-increase">
+                <div class="con-title1 fs-15 pr-12" id="temp-increase">
                   <span class="material-symbols-outlined">
                     arrow_upward
                   </span>
@@ -355,10 +355,10 @@
                 </span>
               </div>
             </div>
-            <div class="fs-30 pb-12" id="a_humi"></div>
+            <div class="fs-30 pb-12" id="humi"></div>
             <div class="flex-container">
               <div class="con-title3">
-                <div class="con-title1 fs-15 pr-12" id="a_humi-increase" style="color: red;">
+                <div class="con-title1 fs-15 pr-12" id="humi-increase" style="color: red;">
                   <span class="material-symbols-outlined">
                     arrow_downward
                   </span>
@@ -384,27 +384,21 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-      let lastData = {
-        n: 2, p: 4, k: 10, s_temp: 10, s_humi: 17, ph: 18, ec: 20,
-        co2: 10, so2: 2, no2: 18, a_temp: 20, a_humi: 15
-      }
-      let currentData = {
-        n: 3, p: 15, k: 30, s_temp: 30, s_humi: 10, ph: 10, ec: 19,
-        co2: 30, so2: 20, no2: 10, a_temp: 20, a_humi: 30
-      }
 
       function calculatePercentIncreased(last, cur) {
         return (cur - last) / last * 100;
       }
 
-      let infos = ['#n', '#p', '#k', '#s_temp', '#s_humi', '#ph', '#ec',
-        '#co2', '#so2', '#no2', '#a_temp', '#a_humi']
-      let infos_increase = ['#n-increase', '#p-increase', '#k-increase', '#s_temp-increase', '#s_humi-increase', '#ec-increase', '#ph-increase',
-        '#co2-increase', '#so2-increase', '#no2-increase', '#a_temp-increase', '#a_humi-increase']
+      let infos = ['#n', '#p', '#k', '#soilTemp', '#soilMoisture', '#ec', '#ph',
+        '#co2', '#so2', '#no2', '#temp', '#humi']
+      let infos_increase = ['#n-increase', '#p-increase', '#k-increase', '#soilTemp-increase', '#soilMoisture-increase', '#ec-increase', '#ph-increase',
+        '#co2-increase', '#so2-increase', '#no2-increase', '#temp-increase', '#humi-increase']
       let infos_element = []
       let infos_increase_element = []
 
-      function updateInfo() {
+      function updateInfo(lastData, currentData) {
+        console.log(lastData)
+        console.log(currentData)
         for (let i = 0; i < infos.length; i++) {
           let key = infos[i].slice(1)
           infos_element.push(document.querySelector(infos[i]))
@@ -421,8 +415,6 @@
         }
       }
 
-      updateInfo();
-      // TODO: add the avtive class to nav when click
       //using DOM to get element
       let nav_titles = document.querySelectorAll('.nav-title')
       nav_titles.forEach(element => {
@@ -440,7 +432,7 @@
     </script>
     <script>
 
-   
+
       let chartIDs = ['myBarChart1', 'myBarChart2', 'myBarChart3'];
       let chartLabels = [['Nitrogen', 'Phosphorus', 'Kali'], ['Temperature', 'Humidity', 'EC', 'pH'], ['CO/CO2', 'SO2', 'NO/NO2', 'Temperature', 'Humidity']];
       let lables = []
@@ -455,6 +447,7 @@
           chartData = data.chartData;
           chartLabel = data.chartLabel;
           chartGen(chartData, chartLabel)
+          updateInfo(data.original[data.original.length - 2], data.original[data.original.length - 1])
         })
 
       function chartGen(chartData, chartLabel) {
@@ -465,7 +458,7 @@
               labels: chartLabel,
               datasets: chartLabels[i].map((chartID, index) => {
                 return {
-                  lables: chartID,
+                  label: chartID,
                   data: chartData[i][index],
                   borderWidth: 1
                 }
