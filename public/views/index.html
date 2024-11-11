@@ -64,88 +64,50 @@
       const content = document.createElement('div');
       content.id = 'content';
 
-      // Function to create a section (like NPK, soil, or environment)
-      function createSection(sectionId, chartID, data) {
-        const section = document.createElement('div');
-        section.id = sectionId;
+      // Helper function to create individual elements
+      function createElement(tag, className, textContent, id, style) {
+        const element = document.createElement(tag);
+        if (className) element.className = className;
+        if (textContent) element.textContent = textContent;
+        if (id) element.id = id;
+        if (style) element.style = style;
+        return element;
+      }
 
-        const flexContainer = document.createElement('div');
-        flexContainer.className = 'flex-container';
+      // Function to create a section
+      function createSection(sectionId,chartID, data) {
+        const section = createElement('div', sectionId);
+        const flexContainer = createElement('div', 'flex-container');
 
-        data.forEach(item => {
-          const conFirst = document.createElement('div');
-          conFirst.id = 'con-first';
+        data.forEach(({ name, icon, iconClass, valueId, increaseId, increase, increaseColor }) => {
+          const conFirst = createElement('div', 'con-first');
+          const flexItem = createElement('div', 'flex-container');
 
-          const flexItem = document.createElement('div');
-          flexItem.className = 'flex-container';
-
-          const conFirst1 = document.createElement('div');
-          conFirst1.className = 'con-first1';
-          conFirst1.textContent = item.name;
-
-          const icon = document.createElement('span');
-          icon.className = `material-symbols-outlined con-icon${item.iconClass}`;
-          icon.textContent = item.icon;
-
-          flexItem.appendChild(conFirst1);
-          flexItem.appendChild(icon);
+          flexItem.appendChild(createElement('div', 'con-first1', name));
+          flexItem.appendChild(createElement('span', `material-symbols-outlined con-icon${iconClass}`, icon));
           conFirst.appendChild(flexItem);
+          conFirst.appendChild(createElement('div', 'fs-30 pb-12', '', valueId));
 
-          const valueDiv = document.createElement('div');
-          valueDiv.className = 'fs-30 pb-12';
-          valueDiv.id = item.valueId;
+          const conTitle1 = createElement('div', 'con-title1 fs-15 pr-12', '', increaseId, { color: increaseColor });
+          conTitle1.appendChild(createElement('span', 'material-symbols-outlined', increase > 0 ? 'arrow_upward' : 'arrow_downward'));
+          conTitle1.appendChild(createElement('span', '', `${Math.abs(increase)}%`));
 
-          const increaseDiv = document.createElement('div');
-          increaseDiv.className = 'flex-container';
-
-          const conTitle3 = document.createElement('div');
-          conTitle3.className = 'con-title3';
-
-          const conTitle1 = document.createElement('div');
-          conTitle1.className = 'con-title1 fs-15 pr-12';
-          conTitle1.id = item.increaseId;
-          conTitle1.style.color = item.increaseColor;
-
-          const arrowIcon = document.createElement('span');
-          arrowIcon.className = 'material-symbols-outlined';
-          arrowIcon.textContent = item.increase > 0 ? 'arrow_upward' : 'arrow_downward';
-
-          const increaseSpan = document.createElement('span');
-          increaseSpan.textContent = `${Math.abs(item.increase)}%`;
-
-          conTitle1.appendChild(arrowIcon);
-          conTitle1.appendChild(increaseSpan);
+          const conTitle2 = createElement('div', 'con-title2', 'Since last read');
+          const conTitle3 = createElement('div', 'con-title3', '', '', { display: 'flex' });
           conTitle3.appendChild(conTitle1);
-
-          const conTitle2 = document.createElement('div');
-          conTitle2.className = 'con-title2';
-          conTitle2.textContent = 'Since last read';
           conTitle3.appendChild(conTitle2);
 
-          increaseDiv.appendChild(conTitle3);
-          conFirst.appendChild(valueDiv);
-          conFirst.appendChild(increaseDiv);
+          conFirst.appendChild(createElement('div', 'flex-container', '', '', { display: 'flex' }));
+          conFirst.appendChild(conTitle3);
           flexContainer.appendChild(conFirst);
         });
 
-        const midder = document.createElement('div');
-        midder.className = 'Midder';
-
-        const chartDiv = document.createElement('div');
-        chartDiv.className = `${sectionId}-chart`;
-
-        const barChartDiv = document.createElement('div');
-        barChartDiv.className = 'bar-chart';
-
-        const canvas = document.createElement('canvas');
-        canvas.id = chartID;
-
-        barChartDiv.appendChild(canvas);
-        chartDiv.appendChild(barChartDiv);
-        midder.appendChild(chartDiv);
-
         section.appendChild(flexContainer);
-        section.appendChild(midder);
+        section.appendChild(createElement('div', 'Midder', '', '', { display: 'flex', justifyContent: 'center' }))
+          .appendChild(createElement('div', `${sectionId}-chart`, '', '', { display: 'flex', justifyContent: 'center' }))
+          .appendChild(createElement('div', 'bar-chart'))
+          .appendChild(createElement('canvas', '', '', chartID));
+
         content.appendChild(section);
       }
 
@@ -165,18 +127,18 @@
 
       const environmentData = [
         { name: 'CO/CO2', icon: 'attach_money', iconClass: 1, valueId: 'co2', increaseId: 'co2-increase', increase: 12, increaseColor: '', },
-        { name: 'SO2', icon: 'groups', iconClass: 2, valueId: 'so2', increaseId: 'so2-increase', increase: -12, increaseColor: 'red', },
+        { name: 'SO2 ', icon: 'groups', iconClass: 2, valueId: 'so2', increaseId: 'so2-increase', increase: -12, increaseColor: 'red', },
         { name: 'NO/NO2', icon: 'list', iconClass: 3, valueId: 'no2', increaseId: 'no2-increase', increase: -12, increaseColor: 'red', },
         { name: 'Temperature', icon: 'device_thermostat', iconClass: 1, valueId: 'temp', increaseId: 'temp-increase', increase: 12, increaseColor: '', },
         { name: 'Humidity', icon: 'humidity_mid', iconClass: 2, valueId: 'humi', increaseId: 'humi-increase', increase: -12, increaseColor: 'red', },
       ];
 
       // Create sections
-      createSection('NPK', 'myBarChart1', npkData);
-      createSection('soil', 'myBarChart2', soilData);
+      createSection('NPK','myBarChart1', npkData);
+      createSection('soil','myBarChart2', soilData);
       createSection('environment', 'myBarChart3', environmentData);
 
-      // Append the content to the body or a specific container
+      // Append the content to the body
       document.body.appendChild(content);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
