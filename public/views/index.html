@@ -6,8 +6,527 @@
 </head>
 
 <body>
-  <h1>Express</h1>
-  <p>Welcome to Express</p>
-</body>
+  <!DOCTYPE html>
+  <html lang="en">
 
-</html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet">
+  </head>
+
+  <body>
+    <div id="nav">
+      <div class="nav-head">
+        <div class="nav-head1 cl-white">
+          Xẻng đa năng
+        </div>
+      </div>
+      <a href="#NPK" class="nav-color">
+        <div class="nav-shoulder cl-gray ">
+          <div class="nav-title p-12 flex-container cl-white active">
+            <span class="material-symbols-outlined pr-12">
+              Nutrition
+            </span>
+            Nutrition
+          </div>
+        </div>
+      </a>
+      <a href="#soil" class="nav-color">
+        <div class="nav-title p-12 flex-container">
+          <span class="material-symbols-outlined pr-12">
+            Nutrition
+          </span>
+          Soil
+        </div>
+      </a>
+      <a href="#environment" class="nav-color">
+        <div style="border-bottom: 1px solid gray;" class="nav-title p-12 flex-container pb-12">
+          <span class="material-symbols-outlined pr-12">
+            <!-- TODO: change to atmostphere -->
+            Airwave
+          </span>
+          Atmostphere
+        </div>
+      </a>
+    </div>
+
+    <div id="content">
+      <div id="NPK">
+        <div class=" flex-container">
+          <div id="con-first">
+            <div class="flex-container">
+              <div class="con-first1">Nitrogen</div>
+              <div>
+                <span class="material-symbols-outlined con-icon1">
+                  compost
+                </span>
+              </div>
+            </div>
+            <div class="fs-30 pb-12" id="n"></div>
+            <div class="flex-container">
+              <div class="con-title3">
+                <div class="con-title1 fs-15 pr-12" id="n-increase">
+                  <span class="material-symbols-outlined">
+                    arrow_upward
+                  </span>
+                  <span>12</span>%
+                </div>
+                <div class="con-title2">
+                  Since last read
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="con-first">
+            <div class="flex-container">
+              <div class="con-first1">Phosphorus</div>
+              <div>
+                <span class="material-symbols-outlined con-icon2">
+                  compost
+                </span>
+              </div>
+            </div>
+            <div class="fs-30 pb-12" id="p"></div>
+            <div class="flex-container">
+              <div class="con-title3">
+                <div class="con-title1 fs-15 pr-12" id="p-increase" style="color: red;">
+                  <span class="material-symbols-outlined">
+                    arrow_downward
+                  </span>
+                  <span">12</span>%
+                </div>
+                <div class="con-title2">
+                  Since last read
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="con-first">
+            <div class="flex-container">
+              <div class="con-first1">Kali</div>
+              <div>
+                <span class="material-symbols-outlined con-icon2">
+                  compost
+                </span>
+              </div>
+            </div>
+            <div class="fs-30 pb-12" id="k"></div>
+            <div class="flex-container">
+              <div class="con-title3">
+                <div class="con-title1 fs-15 pr-12" id="k-increase" style="color: red;">
+                  <span class="material-symbols-outlined">
+                    arrow_downward
+                  </span>
+                  <span>12</span>%
+                </div>
+                <div class="con-title2">
+                  Since last read
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="Midder">
+          <div class="NPK-chart">
+            <div class="bar-chart">
+              <canvas id="myBarChart1"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="End"></div>
+      </div>
+      <div id="soil">
+        <div class=" flex-container">
+          <div id="con-first">
+            <div class="flex-container">
+              <div class="con-first1">Temperature</div>
+              <div>
+                <span class="material-symbols-outlined con-icon1">
+                  device_thermostat
+                </span>
+              </div>
+            </div>
+            <div class="fs-30 pb-12" id="s_temp"></div>
+            <div class="flex-container">
+              <div class="con-title3">
+                <div class="con-title1 fs-15 pr-12" id="s_temp-increase">
+                  <span class="material-symbols-outlined">
+                    arrow_upward
+                  </span>
+                  <span>12</span>%
+                </div>
+                <div class="con-title2">
+                  Since last read
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="con-first">
+            <div class="flex-container">
+              <div class="con-first1">Humidity</div>
+              <div>
+                <span class="material-symbols-outlined con-icon2">
+                  humidity_mid
+                </span>
+              </div>
+            </div>
+            <div class="fs-30 pb-12" id="s_humi"></div>
+            <div class="flex-container">
+              <div class="con-title3">
+                <div class="con-title1 fs-15 pr-12" id="s_humi-increase" style="color: red;">
+                  <span class="material-symbols-outlined">
+                    arrow_downward
+                  </span>
+                  <span>12</span>%
+                </div>
+                <div class="con-title2">
+                  Since last read
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="con-first">
+            <div class="flex-container">
+              <div class="con-first1">EC</div>
+              <div>
+                <span class="material-symbols-outlined con-icon3">
+                  list
+                </span>
+              </div>
+            </div>
+            <div class="fs-30 pb-12" id="ec"></div>
+            <div class="con-title3">
+              <div class="con-title1 fs-15 pr-12" id="ec-increase" style="color: red;">
+                <span class="material-symbols-outlined">
+                  arrow_downward
+                </span>
+                <span>12</span>%
+              </div>
+              <div class="con-title2">
+                Since last read
+              </div>
+            </div>
+          </div>
+          <div id="con-first">
+            <div class="flex-container">
+              <div class="con-first1">pH</div>
+              <div>
+                <span class="material-symbols-outlined con-icon1">
+                  attach_money
+                </span>
+              </div>
+            </div>
+            <div class="fs-30 pb-12" id="ph"></div>
+            <div class="flex-container">
+              <div class="con-title3">
+                <div class="con-title1 fs-15 pr-12" id="ph-increase">
+                  <span class="material-symbols-outlined">
+                    arrow_upward
+                  </span>
+                  <span>12</span>%
+                </div>
+                <div class="con-title2">
+                  Since last read
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="Midder">
+          <div class="Soil-chart">
+            <div class="bar-chart">
+              <canvas id="myBarChart2"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="End"></div>
+      </div>
+      <div id="environment">
+        <div class=" flex-container">
+          <div id="con-first">
+            <div class="flex-container">
+              <div class="con-first1">CO/CO2</div>
+              <div>
+                <span class="material-symbols-outlined con-icon1">
+                  attach_money
+                </span>
+              </div>
+            </div>
+            <div class="fs-30 pb-12" id="co2"></div>
+            <div class="flex-container">
+              <div class="con-title3">
+                <div class="con-title1 fs-15 pr-12" id="co2-increase">
+                  <span class="material-symbols-outlined">
+                    arrow_upward
+                  </span>
+                  <span>12</span>%
+                </div>
+                <div class="con-title2">
+                  Since last read
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="con-first">
+            <div class="flex-container">
+              <div class="con-first1">SO2</div>
+              <div>
+                <span class="material-symbols-outlined con-icon2">
+                  groups
+                </span>
+              </div>
+            </div>
+            <div class="fs-30 pb-12" id="so2"></div>
+            <div class="flex-container">
+              <div class="con-title3">
+                <div class="con-title1 fs-15 pr-12" id="so2-increase" style="color: red;">
+                  <span class="material-symbols-outlined">
+                    arrow_downward
+                  </span>
+                  <span>12</span>%
+                </div>
+                <div class="con-title2">
+                  Since last read
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="con-first">
+            <div class="flex-container">
+              <div class="con-first1">NO/NO2</div>
+              <div>
+                <span class="material-symbols-outlined con-icon3">
+                  list
+                </span>
+              </div>
+            </div>
+            <div class="fs-30 pb-12" id="no2"></div>
+            <div class="con-title3">
+              <div class="con-title1 fs-15 pr-12" id="no2-increase" style="color: red;">
+                <span class="material-symbols-outlined">
+                  arrow_downward
+                </span>
+                <span>12</span>%
+              </div>
+              <div class="con-title2">
+                Since last read
+              </div>
+            </div>
+          </div>
+          <div id="con-first">
+            <div class="flex-container">
+              <div class="con-first1">Temperature</div>
+              <div>
+                <span class="material-symbols-outlined con-icon1">
+                  device_thermostat
+                </span>
+              </div>
+            </div>
+            <div class="fs-30 pb-12" id="a_temp"></div>
+            <div class="flex-container">
+              <div class="con-title3">
+                <div class="con-title1 fs-15 pr-12" id="a_temp-increase">
+                  <span class="material-symbols-outlined">
+                    arrow_upward
+                  </span>
+                  <span>12</span>%
+                </div>
+                <div class="con-title2">
+                  Since last read
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="con-first">
+            <div class="flex-container">
+              <div class="con-first1">Humidity</div>
+              <div>
+                <span class="material-symbols-outlined con-icon2">
+                  humidity_mid
+                </span>
+              </div>
+            </div>
+            <div class="fs-30 pb-12" id="a_humi"></div>
+            <div class="flex-container">
+              <div class="con-title3">
+                <div class="con-title1 fs-15 pr-12" id="a_humi-increase" style="color: red;">
+                  <span class="material-symbols-outlined">
+                    arrow_downward
+                  </span>
+                  <span">12</span>%
+                </div>
+                <div class="con-title2">
+                  Since last read
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="Midder">
+          <div class="Environment-chart">
+            <div class="bar-chart">
+              <canvas id="myBarChart3"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="End"></div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      let lastData = {
+        n: 2, p: 4, k: 10, s_temp: 10, s_humi: 17, ph: 18, ec: 20,
+        co2: 10, so2: 2, no2: 18, a_temp: 20, a_humi: 15
+      }
+      let currentData = {
+        n: 3, p: 15, k: 30, s_temp: 30, s_humi: 10, ph: 10, ec: 19,
+        co2: 30, so2: 20, no2: 10, a_temp: 20, a_humi: 30
+      }
+
+      function calculatePercentIncreased(last, cur) {
+        return (cur - last) / last * 100;
+      }
+
+      let infos = ['#n', '#p', '#k', '#s_temp', '#s_humi', '#ph', '#ec',
+        '#co2', '#so2', '#no2', '#a_temp', '#a_humi']
+      let infos_increase = ['#n-increase', '#p-increase', '#k-increase', '#s_temp-increase', '#s_humi-increase', '#ec-increase', '#ph-increase',
+        '#co2-increase', '#so2-increase', '#no2-increase', '#a_temp-increase', '#a_humi-increase']
+      let infos_element = []
+      let infos_increase_element = []
+
+      function updateInfo() {
+        for (let i = 0; i < infos.length; i++) {
+          let key = infos[i].slice(1)
+          infos_element.push(document.querySelector(infos[i]))
+          infos_increase_element.push(document.querySelector(infos_increase[i]))
+
+          let change = calculatePercentIncreased(lastData[key], currentData[key]).toFixed(2)
+          infos_element[i].textContent = currentData[key]
+          infos_increase_element[i].innerHTML = `
+                  <span class="material-symbols-outlined">
+                  ${change > 0 ? 'arrow_upward' : 'arrow_downward'}
+                                  </span>
+                                  <span>${Math.abs(change)}</span>%`
+          infos_increase_element[i].style.color = change > 0 ? 'green' : 'red'
+        }
+      }
+
+      updateInfo();
+      // TODO: add the avtive class to nav when click
+      //using DOM to get element
+      let nav_titles = document.querySelectorAll('.nav-title')
+      nav_titles.forEach(element => {
+        //listen to the click event
+        element.addEventListener("click", (event) => {
+          //remove active class in every nav-title
+          nav_titles.forEach(e => {
+            e.classList.remove('active')
+          })
+          //add the active class to the element that clicked
+          element.classList.add('active')
+        })
+      })
+
+    </script>
+    <script>
+
+   
+      let chartIDs = ['myBarChart1', 'myBarChart2', 'myBarChart3'];
+      let chartLabels = [['Nitrogen', 'Phosphorus', 'Kali'], ['Temperature', 'Humidity', 'EC', 'pH'], ['CO/CO2', 'SO2', 'NO/NO2', 'Temperature', 'Humidity']];
+      let lables = []
+      let charts = [];
+      let chartData = [];
+      let chartLabel = [];
+
+      fetch("/getChartData")
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          chartData = data.chartData;
+          chartLabel = data.chartLabel;
+          chartGen(chartData, chartLabel)
+        })
+
+      function chartGen(chartData, chartLabel) {
+        for (let i = 0; i < chartIDs.length; i++) {
+          let chart = new Chart(document.getElementById(chartIDs[i]), {
+            type: 'line',
+            data: {
+              labels: chartLabel,
+              datasets: chartLabels[i].map((chartID, index) => {
+                return {
+                  lables: chartID,
+                  data: chartData[i][index],
+                  borderWidth: 1
+                }
+              }),
+              options: {
+                scales: {
+                  y: { beginAtZero: true }
+                }
+              }
+            }
+          })
+          charts.push(chart)
+        }
+      }
+
+      function addData(chart, label, newData) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset, i) => {
+          dataset.data.push(newData[i]);
+        });
+        chart.update();
+      }
+
+      function removeData(chart) {
+        chart.data.labels.shift();
+        chart.data.datasets.forEach((dataset) => {
+          dataset.data.shift();
+        });
+        chart.update();
+      }
+    </script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on('connect', function () {
+        console.log('connected');
+      });
+
+      socket.on("/web/control", (data) => {
+        console.log(data);
+        if (data.deviceID == "esp32") {
+          deviceStatus.style.backgroundColor = "green";
+        }
+      })
+      socket.on("/web/measure", (data) => {
+        console.log(data);
+        if (data.deviceID == "esp32") {
+          deviceStatus.style.backgroundColor = "green";
+        }
+      })
+      socket.on("message", (data) => {
+        console.log(data);
+        if (data.deviceID == "esp32") {
+          deviceStatus.style.backgroundColor = "green";
+        }
+      })
+      socket.on("deviceStatus", (data) => {
+        deviceStatus.style.backgroundColor = "red";
+      })
+    </script>
+  </body>
+
+  </html>
