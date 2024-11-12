@@ -41,10 +41,8 @@ io.on("connection", (socket) => {
     })
 
     socket.on("/esp/measure", (data) => {
-        deviceID = data.deviceID ? data.deviceID : "web";
-        if (deviceID == "esp32") deviceStatus = "online";
-        console.log(`message from ${data.deviceID ? data.deviceID : 'web'} via socket id: ${socket.id} on topic /es/measure`)
-        socket.broadcast.emit("/web/measure", data);
+        console.log("reiceive msg from esp");
+        socket.broadcast.emit("/web/measure", data)
     })
 
     //     socket.on("/esp/pong", (data) => {

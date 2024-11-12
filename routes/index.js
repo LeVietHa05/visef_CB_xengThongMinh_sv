@@ -9,17 +9,14 @@ genChartData();
 let tempData = {
   chartData: [],
   chartLabel: [],
-  original: data.slice(-10)
+  original: data.slice(0, 10)
 }
 function getData(type) {
   return data.map(d => {
     return d[type]
-  }).slice(-10)
+  }).slice(0, 10).reverse()
 }
-tempData.chartData = [[getData('n'), getData('p'), getData('k')],
-[getData('soilTemp'), getData('soilMoisture'), getData('ec'), getData('ph')],
-[getData('co2'), getData('so2'), getData('no2'), getData('temp'), getData('humi')]]
-tempData.chartLabel = data.map(d => d.timeStamp).slice(-10)
+
 
 
 /* GET home page. */
@@ -28,7 +25,32 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/getChartData', (req, res) => {
+  tempData.chartData = [[getData('n'), getData('p'), getData('k')],
+  [getData('soilTemp'), getData('soilMoisture'), getData('ec'), getData('ph')],
+  [getData('co2'), getData('so2'), getData('no2'), getData('temp'), getData('humi')]]
+  tempData.chartLabel = data.map(d => d.timeStamp).slice(0, 10).reverse()
+  tempData.original = data.slice(0, 10).reverse()
   res.json(tempData);
+})
+
+router.post('/newData', (req, res) => {
+  console.log(req.body)
+  try {
+    if (req.body) {
+      data.unshift({
+        ...req.body, timeStamp: getTime('vi-VN')
+      })
+      if (data.length > MAXDATALENGTH) {
+        data.pop();
+      }
+    } else {
+      throw new Error("req.body is undefined")
+    }
+    res.status(200).json({ msg: "oke" })
+  } catch (e) {
+    console.log(e);
+    res.status(400).json({ msg: 'check body format' })
+  }
 })
 
 function genChartData() {

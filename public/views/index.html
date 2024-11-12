@@ -75,7 +75,7 @@
       }
 
       // Function to create a section
-      function createSection(sectionId,chartID, data) {
+      function createSection(sectionId, chartID, data) {
         const section = createElement('div', sectionId);
         const flexContainer = createElement('div', 'flex-container');
 
@@ -134,8 +134,8 @@
       ];
 
       // Create sections
-      createSection('NPK','myBarChart1', npkData);
-      createSection('soil','myBarChart2', soilData);
+      createSection('NPK', 'myBarChart1', npkData);
+      createSection('soil', 'myBarChart2', soilData);
       createSection('environment', 'myBarChart3', environmentData);
 
       // Append the content to the body
@@ -233,8 +233,7 @@
         }
       }
 
-      function addData(chart, label, newData) {
-        chart.data.labels.push(label);
+      function addData(chart, newData) {
         chart.data.datasets.forEach((dataset, i) => {
           dataset.data.push(newData[i]);
         });
@@ -242,7 +241,6 @@
       }
 
       function removeData(chart) {
-        chart.data.labels.shift();
         chart.data.datasets.forEach((dataset) => {
           dataset.data.shift();
         });
@@ -259,25 +257,57 @@
 
       socket.on("/web/control", (data) => {
         console.log(data);
-        if (data.deviceID == "esp32") {
-          deviceStatus.style.backgroundColor = "green";
-        }
       })
       socket.on("/web/measure", (data) => {
         console.log(data);
-        if (data.deviceID == "esp32") {
-          deviceStatus.style.backgroundColor = "green";
+        charts[0].data.labels.push(getTime('vi-VN'));
+        addData(charts[0], [data.n, data.p, data.k])
+        addData(charts[1], [data.soilTemp, data.soilMoisture, data.ec, data.ph])
+        addData(charts[2], [data.co2, data.so2, data.no2, data.temp, data.humi])
+        if (charts[0].data.labels.length > 15) {
+        charts[0].data.labels.shift();
+          removeData(charts[0])
+          removeData(charts[1])
+          removeData(charts[2])
         }
+        fetch("/newData", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        })
       })
       socket.on("message", (data) => {
         console.log(data);
-        if (data.deviceID == "esp32") {
-          deviceStatus.style.backgroundColor = "green";
+      })
+
+      function testSocket(time) {
+        for (let i = 0; i < time; i++) {
+          let tempObj = {
+            n: randomFloat(10, 20),
+            p: randomFloat(10, 20),
+            k: randomFloat(10, 20),
+            soilTemp: randomFloat(10, 20),
+            soilMoisture: randomFloat(10, 20),
+            ec: randomFloat(10, 20),
+            ph: randomFloat(10, 20),
+            co2: randomFloat(10, 20),
+            so2: randomFloat(10, 20),
+            no2: randomFloat(10, 20),
+            temp: randomFloat(10, 20),
+            humi: randomFloat(10, 20),
+          }
+          socket.emit("/esp/measure", tempObj)
         }
-      })
-      socket.on("deviceStatus", (data) => {
-        deviceStatus.style.backgroundColor = "red";
-      })
+      }
+      function randomFloat(min, max, n) {
+        return Number((Math.random() * (max - min) + min).toFixed(n));
+      }
+      function getTime(type) {
+        let date = new Date();
+        return date.toLocaleTimeString(type)
+      }
     </script>
   </body>
 
