@@ -155,14 +155,19 @@
       let infos_element = []
       let infos_increase_element = []
 
+      for (let i = 0; i < infos.length; i++) {
+        let key = infos[i].slice(1)
+        infos_element.push(document.querySelector(infos[i]))
+        infos_increase_element.push(document.querySelector(infos_increase[i]))
+      }
+
+      let lastData = [];
+
       function updateInfo(lastData, currentData) {
         console.log(lastData)
         console.log(currentData)
         for (let i = 0; i < infos.length; i++) {
           let key = infos[i].slice(1)
-          infos_element.push(document.querySelector(infos[i]))
-          infos_increase_element.push(document.querySelector(infos_increase[i]))
-
           let change = calculatePercentIncreased(lastData[key], currentData[key]).toFixed(2)
           infos_element[i].textContent = currentData[key]
           infos_increase_element[i].innerHTML = `
@@ -206,7 +211,8 @@
           chartData = data.chartData;
           chartLabel = data.chartLabel;
           chartGen(chartData, chartLabel)
-          updateInfo(data.original[data.original.length - 2], data.original[data.original.length - 1])
+          lastData = data.original[data.original.length - 2];
+          updateInfo(lastData, data.original[data.original.length - 1])
         })
 
       function chartGen(chartData, chartLabel) {
@@ -260,12 +266,14 @@
       })
       socket.on("/web/measure", (data) => {
         console.log(data);
+        updateInfo(lastData, data);
+        lastData = data;
         charts[0].data.labels.push(getTime('vi-VN'));
         addData(charts[0], [data.n, data.p, data.k])
         addData(charts[1], [data.soilTemp, data.soilMoisture, data.ec, data.ph])
         addData(charts[2], [data.co2, data.so2, data.no2, data.temp, data.humi])
         if (charts[0].data.labels.length > 15) {
-        charts[0].data.labels.shift();
+          charts[0].data.labels.shift();
           removeData(charts[0])
           removeData(charts[1])
           removeData(charts[2])
