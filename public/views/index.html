@@ -382,7 +382,7 @@
     // Helper function to clear the stage select dropdown
     function clearStageSelect() {
       const stageSelect = document.getElementById('stageSelect');
-      stageSelect.innerHTML = '<option value="">--Select Stage--</option>';
+      stageSelect.innerHTML = '<option value="">--giai đoạn ?--</option>';
       clearInfoContainer();
     }
 
@@ -391,16 +391,16 @@
       const infoContainer = document.getElementById('infoContainer');
       infoContainer.innerHTML = `
             <h3>${stage.stage}</h3>
-            <p>Temperature: ${stage.temperature}°C</p>
-            <p>Humidity: ${stage.humidity}%</p>
+            <p>Nhiệt độ: ${stage.temperature}°C</p>
+            <p>Độ ẩm: ${stage.humidity}%</p>
             <p>pH: ${stage.pH}</p>
-            <p>Nutrients:</p>
+            <p>Dinh dưỡng:</p>
             <ul>
                 <li>N: ${stage.nutrients.N}</li>
                 <li>P: ${stage.nutrients.P}</li>
                 <li>K: ${stage.nutrients.K}</li>
             </ul>
-            <p>Advice:</p>
+            <p>Lời khuyên:</p>
             <ul>
                 ${stage.advice.map(item => `<li>${item}</li>`).join('')}
             </ul>
