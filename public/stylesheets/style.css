@@ -250,3 +250,21 @@
 .bar-chart {
 width: 850px;
 }
+
+
+/* Add some basic CSS for styling */
+.select-container {
+    margin: 20px;
+    color: white;
+}
+.select-container select {
+    padding: 10px;
+    margin: 10px 0;
+}
+.info-container {
+    color: white;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

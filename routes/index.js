@@ -122,6 +122,11 @@ router.post('/register', async (req, res) => {
     `);
 });
 
+router.get('/getThreshold', (req, res) => {
+  let data = fs.readFileSync(path.join(__dirname, '../data.json'), 'utf-8');
+  res.json(JSON.parse(data));
+})
+
 
 router.get('/getChartData', (req, res) => {
   tempData.chartData = [[getData('n'), getData('p'), getData('k')],

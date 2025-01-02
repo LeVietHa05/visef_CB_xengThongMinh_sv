@@ -1,0 +1,163 @@
+[
+    {
+        "name": "Quýt - Quang Hán",
+        "stages": [
+            {
+                "stage": "Nảy mầm",
+                "temperature": "20-25",
+                "humidity": "70-80",
+                "pH": "5.5-6.5",
+                "nutrients": {
+                    "N": "",
+                    "P": "",
+                    "K": ""
+                },
+                "advice": [
+                    "Độ ẩm dưới 70%: Tưới nước thường xuyên nhưng tránh ngập úng. Có thể sử dụng màng phủ để giữ ẩm.",
+                    "Độ ẩm trên 80%: Cải thiện hệ thống thoát nước, đảm bảo đất không bị ngập nước kéo dài.",
+                    "pH đất dưới 5.5: Bón vôi để nâng pH.",
+                    "pH đất trên 6.5: Bón lưu huỳnh (sulfur) hoặc phân hữu cơ chứa axit.",
+                    "Thiếu NPK: Bổ sung phân NPK tổng hợp với hàm lượng phù hợp."
+                ]
+            },
+            {
+                "stage": "Phát triển thân lá, ra hoa",
+                "temperature": "15-28",
+                "humidity": "60-75",
+                "pH": "5.5-6.5",
+                "nutrients": {
+                    "N": "2.5% - 3.2%",
+                    "P": "0.8% - 1.2%",
+                    "K": "70-90"
+                },
+                "advice": [
+                    "Độ ẩm dưới 60%: Tưới nước định kỳ, sử dụng hệ thống tưới nhỏ giọt.",
+                    "Độ ẩm trên 75%: Tăng cường thông thoáng đất bằng cách xới đất hoặc sử dụng đất thoát nước tốt.",
+                    "Thiếu N: Sử dụng phân ure hoặc phân hữu cơ giàu đạm.",
+                    "Thiếu P: Bổ sung phân super lân hoặc phân chuồng đã hoai mục.",
+                    "Thiếu K: Dùng kali clorua hoặc kali sunfat."
+                ]
+            },
+            {
+                "stage": "Thu hoạch",
+                "temperature": "20-25",
+                "humidity": "60-70",
+                "pH": "5.5-6.5",
+                "nutrients": {
+                    "N": "60-80",
+                    "P": "50-70",
+                    "K": "100-120"
+                },
+                "advice": [
+                    "Độ ẩm dưới 60% hoặc trên 70%: Điều chỉnh tưới tiêu, đảm bảo đất đủ ẩm nhưng không ngập úng.",
+                    "Thiếu hoặc thừa NPK: Kiểm tra và cân đối phân bón theo hàm lượng tiêu chuẩn."
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thạch đen - Thạch An",
+        "stages": [
+            {
+                "stage": "Nảy mầm",
+                "temperature": "25-30",
+                "humidity": "80-90",
+                "pH": "5.5-6.5",
+                "nutrients": {
+                    "N": "40-60",
+                    "P": "30-50",
+                    "K": "30-50"
+                },
+                "advice": [
+                    "Độ ẩm dưới 80%: Tưới nước và che phủ gốc cây để giữ ẩm.",
+                    "Độ ẩm trên 90%: Cải thiện thoát nước, giảm nguy cơ thối rễ.",
+                    "Thiếu NPK: Sử dụng phân lân và phân hữu cơ để kích thích nảy mầm."
+                ]
+            },
+            {
+                "stage": "Phát triển thân lá, ra hoa",
+                "temperature": "20-28",
+                "humidity": "75-85",
+                "pH": "5.5-6.5",
+                "nutrients": {
+                    "N": "60-80",
+                    "P": "40-60",
+                    "K": "40-60"
+                },
+                "advice": [
+                    "Độ ẩm dưới 75%: Tăng cường tưới nước, nhất là vào buổi sáng sớm.",
+                    "Độ ẩm trên 85%: Kiểm tra độ thoáng khí, sử dụng đất pha cát để giảm ẩm.",
+                    "Thiếu K: Sử dụng phân kali sunfat, đặc biệt trong giai đoạn phát triển lá."
+                ]
+            },
+            {
+                "stage": "Thu hoạch",
+                "temperature": "22-28",
+                "humidity": "65-75",
+                "pH": "5.5-6.5",
+                "nutrients": {
+                    "N": "50-70",
+                    "P": "50-70",
+                    "K": "60-80"
+                },
+                "advice": [
+                    "Độ ẩm dưới 65%: Tăng tần suất tưới nước nhẹ.",
+                    "Thiếu hoặc thừa NPK: Kiểm tra đất và bổ sung theo chỉ số cụ thể."
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Hạt dẻ - Trùng Khánh",
+        "stages": [
+            {
+                "stage": "Nảy mầm",
+                "temperature": "20-25",
+                "humidity": "60-70",
+                "pH": "5.0-6.0",
+                "nutrients": {
+                    "N": "50-70",
+                    "P": "30-50",
+                    "K": "40-60"
+                },
+                "advice": [
+                    "Độ ẩm dưới 60%: Tăng cường giữ ẩm bằng cách che phủ rơm rạ.",
+                    "Độ ẩm trên 70%: Cải thiện độ thoát nước bằng cách trộn đất cát.",
+                    "pH dưới 5.0: Bón vôi hoặc sử dụng phân có chứa dolomite.",
+                    "pH trên 6.0: Dùng phân hữu cơ để điều chỉnh."
+                ]
+            },
+            {
+                "stage": "Phát triển thân lá, ra hoa",
+                "temperature": "15-22",
+                "humidity": "50-65",
+                "pH": "5.0-6.0",
+                "nutrients": {
+                    "N": "70-90",
+                    "P": "50-70",
+                    "K": "60-80"
+                },
+                "advice": [
+                    "Độ ẩm dưới 50%: Tưới nước nhẹ nhưng thường xuyên.",
+                    "Độ ẩm trên 65%: Tăng cường thoát nước bằng cách rạch luống.",
+                    "Thiếu NPK: Bổ sung phân bón theo tỷ lệ cân đối cho từng giai đoạn."
+                ]
+            },
+            {
+                "stage": "Thu hoạch",
+                "temperature": "15-20",
+                "humidity": "50-60",
+                "pH": "5.0-6.0",
+                "nutrients": {
+                    "N": "40-60",
+                    "P": "40-60",
+                    "K": "60-80"
+                },
+                "advice": [
+                    "Độ ẩm dưới 50%: Duy trì tưới nước nhẹ để hỗ trợ quá trình hoàn thiện trái.",
+                    "Độ ẩm trên 60%: Giảm tưới nước để tránh trái bị hỏng."
+                ]
+            }
+        ]
+    }
+]
